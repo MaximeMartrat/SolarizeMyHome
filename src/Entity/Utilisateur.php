@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
@@ -22,15 +20,16 @@ class Utilisateur
     private ?string $Prenom = null;
 
     #[ORM\Column]
-    private ?int $Facture = null;
+    private ?float $longueur_toit = null;
 
-    #[ORM\OneToOne(inversedBy: 'utilisateur', cascade: ['persist', 'remove'])]
+    #[ORM\Column]
+    private ?float $largeur_toit = null;
+
+    #[ORM\Column]
+    private ?int $facture = null;
+
+    #[ORM\OneToOne(mappedBy: 'utilisateur', cascade: ['persist', 'remove'])]
     private ?Calcul $calcul = null;
-
-    public function __construct()
-    {
-        $this->calculs = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -61,14 +60,38 @@ class Utilisateur
         return $this;
     }
 
-    public function getFacture(): ?int
+    public function getLongueurToit(): ?float
     {
-        return $this->Facture;
+        return $this->longueur_toit;
     }
 
-    public function setFacture(int $Facture): static
+    public function setLongueurToit(float $longueur_toit): static
     {
-        $this->Facture = $Facture;
+        $this->longueur_toit = $longueur_toit;
+
+        return $this;
+    }
+
+    public function getLargeurToit(): ?float
+    {
+        return $this->largeur_toit;
+    }
+
+    public function setLargeurToit(float $largeur_toit): static
+    {
+        $this->largeur_toit = $largeur_toit;
+
+        return $this;
+    }
+
+    public function getFacture(): ?int
+    {
+        return $this->facture;
+    }
+
+    public function setFacture(int $facture): static
+    {
+        $this->facture = $facture;
 
         return $this;
     }
@@ -80,9 +103,18 @@ class Utilisateur
 
     public function setCalcul(?Calcul $calcul): static
     {
+        // unset the owning side of the relation if necessary
+        if ($calcul === null && $this->calcul !== null) {
+            $this->calcul->setUtilisateur(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($calcul !== null && $calcul->getUtilisateur() !== $this) {
+            $calcul->setUtilisateur($this);
+        }
+
         $this->calcul = $calcul;
 
         return $this;
     }
-
 }

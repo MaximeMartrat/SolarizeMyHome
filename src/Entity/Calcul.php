@@ -14,7 +14,7 @@ class Calcul
     private ?int $id = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $consoKWh = null;
+    private ?float $consoKWH = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $puissanceKWC = null;
@@ -23,21 +23,15 @@ class Calcul
     private ?float $puissanceWC = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $productionKWh = null;
+    private ?float $productionKWH = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $panneauxNecessaires = null;
+    private ?int $panneaux_necessaires = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $surfaceToitM2 = null;
+    private ?float $surface_toitM2 = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $largeurPanneauM = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?float $longueurPanneauM = null;
-
-    #[ORM\OneToOne(mappedBy: 'calcul', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'calcul', cascade: ['persist', 'remove'])]
     private ?Utilisateur $utilisateur = null;
 
     public function getId(): ?int
@@ -45,14 +39,14 @@ class Calcul
         return $this->id;
     }
 
-    public function getConsoKWh(): ?float
+    public function getConsoKWH(): ?float
     {
-        return $this->consoKWh;
+        return $this->consoKWH;
     }
 
-    public function setConsoKWh(float $consoKWh): static
+    public function setConsoKWH(?float $consoKWH): static
     {
-        $this->consoKWh = $consoKWh;
+        $this->consoKWH = $consoKWH;
 
         return $this;
     }
@@ -62,7 +56,7 @@ class Calcul
         return $this->puissanceKWC;
     }
 
-    public function setPuissanceKWC(float $puissanceKWC): static
+    public function setPuissanceKWC(?float $puissanceKWC): static
     {
         $this->puissanceKWC = $puissanceKWC;
 
@@ -81,62 +75,38 @@ class Calcul
         return $this;
     }
 
-    public function getProductionKWh(): ?float
+    public function getProductionKWH(): ?float
     {
-        return $this->productionKWh;
+        return $this->productionKWH;
     }
 
-    public function setProductionKWh(?float $productionKWh): static
+    public function setProductionKWH(?float $productionKWH): static
     {
-        $this->productionKWh = $productionKWh;
+        $this->productionKWH = $productionKWH;
 
         return $this;
     }
 
-    public function getPanneauxNecessaires(): ?float
+    public function getPanneauxNecessaires(): ?int
     {
-        return $this->panneauxNecessaires;
+        return $this->panneaux_necessaires;
     }
 
-    public function setPanneauxNecessaires(?float $panneauxNecessaires): static
+    public function setPanneauxNecessaires(?int $panneaux_necessaires): static
     {
-        $this->panneauxNecessaires = $panneauxNecessaires;
+        $this->panneaux_necessaires = $panneaux_necessaires;
 
         return $this;
     }
 
     public function getSurfaceToitM2(): ?float
     {
-        return $this->surfaceToitM2;
+        return $this->surface_toitM2;
     }
 
-    public function setSurfaceToitM2(?float $surfaceToitM2): static
+    public function setSurfaceToitM2(?float $surface_toitM2): static
     {
-        $this->surfaceToitM2 = $surfaceToitM2;
-
-        return $this;
-    }
-
-    public function getLargeurPanneauM(): ?float
-    {
-        return $this->largeurPanneauM;
-    }
-
-    public function setLargeurPanneauM(?float $largeurPanneauM): static
-    {
-        $this->largeurPanneauM = $largeurPanneauM;
-
-        return $this;
-    }
-
-    public function getLongueurPanneauM(): ?float
-    {
-        return $this->longueurPanneauM;
-    }
-
-    public function setLongueurPanneauM(?float $longueurPanneauM): static
-    {
-        $this->longueurPanneauM = $longueurPanneauM;
+        $this->surface_toitM2 = $surface_toitM2;
 
         return $this;
     }
@@ -148,16 +118,6 @@ class Calcul
 
     public function setUtilisateur(?Utilisateur $utilisateur): static
     {
-        // unset the owning side of the relation if necessary
-        if ($utilisateur === null && $this->utilisateur !== null) {
-            $this->utilisateur->setCalcul(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($utilisateur !== null && $utilisateur->getCalcul() !== $this) {
-            $utilisateur->setCalcul($this);
-        }
-
         $this->utilisateur = $utilisateur;
 
         return $this;

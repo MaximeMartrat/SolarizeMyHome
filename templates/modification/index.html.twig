@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MODIFICATION{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <form method="post">
+                {{ form_start(form) }}
+
+                <h1 class="h3 mb-3 font-weight-normal">Modification</h1>
+                <hr class="my-4">
+
+                <div class="form-group">
+                    {{ form_row(form.Nom, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Nom'
+                        }
+                    }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.Prenom, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Prénom'
+                        }
+                    }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.longueur_toit, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Longueur de toit'
+                        }
+                    }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.largeur_toit, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Largeur de toit'
+                        }
+                    }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.facture, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Facture'
+                        }
+                    }) }}
+                </div>
+
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                      OK
+                    </button>
+                </div>
+
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

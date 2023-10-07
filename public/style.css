@@ -1,6 +1,9 @@
 body {
-    background-color: lightgray;
+  background-color: lightgray;
 }
-.btn-width {
-    width: 15%;
+.jumbotron-centered {
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

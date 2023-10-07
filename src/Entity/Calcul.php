@@ -34,6 +34,27 @@ class Calcul
     #[ORM\OneToOne(inversedBy: 'calcul', cascade: ['persist', 'remove'])]
     private ?Utilisateur $utilisateur = null;
 
+    public function calculerDonnees(): void
+    {
+        if ($this->consoKWH !== null) {
+
+            // 1. Calcul de la production idéale
+            $this->productionKWH = $this->consoKWH * 0.7;
+
+            // 2. Calcul de la puissance recommandée
+            $this->puissanceKWC = $this->productionKWH / 1460;
+            $this->puissanceWC = $this->puissanceKWC * 1000;
+
+            // 3. Calcul du nombre de panneaux nécessaires
+            $panneaux = 375; // Puissance d'un panneau photovoltaïque en Wc
+            $this->panneaux_necessaires = ceil($this->puissanceWC / $panneaux);
+
+            // 4. Calcul de la surface nécessaire
+            $panneauLargeur = 1.755; // Largeur d'un panneau photovoltaïque en mètres
+            $panneauLongueur = 1.038; // Longueur d'un panneau photovoltaïque en mètres
+            $this->surface_toitM2 = $this->panneaux_necessaires * $panneauLargeur * $panneauLongueur;
+        }
+    }
     public function getId(): ?int
     {
         return $this->id;

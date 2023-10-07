@@ -1,0 +1,29 @@
+{# templates/installation/resultats_calculs.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Résultats des calculs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Votre Conso (KWH)</th>
+                <th scope="col">Puissance Recommandée (KWC)</th>
+                <th scope="col">Puissance Recommandée (WC)</th>
+                <th scope="col">Production Estimée(KWH)</th>
+                <th scope="col">Panneaux Nécessaires</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{{ calcul.getConsoKWH() }}</td>
+                    <td>{{ calcul.getPuissanceKWC()|number_format(2, '.', '') }}</td>
+                    <td>{{ calcul.getPuissanceWC()|number_format(2, '.', '') }}</td>
+                    <td>{{ calcul.getProductionKWH() }}</td>
+                    <td>{{ calcul.getPanneauxNecessaires() }}</td>
+                </tr>
+        </tbody>
+    </table>
+{% endblock %}
+

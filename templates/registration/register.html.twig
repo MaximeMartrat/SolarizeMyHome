@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SOLARIZE/INSCRIPTION{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="h3 mb-3 font-weight-normal">INSCRIPTION</h1>
+        <hr class="my-4">
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+        <div class="mb-3">
+            {{ form_row(registrationForm.username, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Username'
+                }
+            }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.plainPassword, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Password'
+                }
+            }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.Nom, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Nom'
+                }
+            }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.Prenom, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Prénom'
+                }
+            }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.longueur_toit, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Longueur de toit'
+                }
+            }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.largeur_toit, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Largeur de toit'
+                }
+            }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.facture, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Facture'
+                }
+            }) }}
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+        {{ form_row(registrationForm.agreeTerms, {
+            'attr': {'class': 'form-check-input mx-2'}
+        }) }}
+        
+        <div class="form-group">
+            <div class="form-check">
+                <span class="checkmark"></span> 
+            </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary">Enregistrer</button>
+        {{ form_end(registrationForm) }}
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -29,7 +29,7 @@ class InstallationPhotovoltaiqueController extends AbstractController
             // Créez une instance de Calcul
             $calcul = new Calcul();
             $calcul->setConsoKWH($data->getFacture() / 0.20); // Calcul de la consommation en kWh
-
+            $calcul->setSurfaceToitM2($data->getLongueurToit() * $data->getLargeurToit());
             // Utilisez la méthode de l'entité Calcul pour effectuer les autres calculs
             $calcul->calculerDonnees();
 

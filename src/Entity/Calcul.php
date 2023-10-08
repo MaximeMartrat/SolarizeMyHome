@@ -34,9 +34,12 @@ class Calcul
     #[ORM\OneToOne(inversedBy: 'calcul', cascade: ['persist', 'remove'])]
     private ?Utilisateur $utilisateur = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $panneauxElimines = null;
+
     public function calculerDonnees(): void
     {
-        if ($this->consoKWH !== null) {
+        if ($this->consoKWH !== null && $this->surface_toitM2 !== null) {
 
             // 1. Calcul de la production idéale
             $this->productionKWH = $this->consoKWH * 0.7;
@@ -52,7 +55,14 @@ class Calcul
             // 4. Calcul de la surface nécessaire
             $panneauLargeur = 1.755; // Largeur d'un panneau photovoltaïque en mètres
             $panneauLongueur = 1.038; // Longueur d'un panneau photovoltaïque en mètres
-            $this->surface_toitM2 = $this->panneaux_necessaires * $panneauLargeur * $panneauLongueur;
+            $surfacePanneauM2 = $panneauLargeur * $panneauLongueur; 
+
+            $this->panneauxElimines = 0;
+            // Calcul du nombre de panneaux nécessaires en fonction de la surface du toit
+            while (($this->panneaux_necessaires * $surfacePanneauM2) > $this->surface_toitM2) {
+                $this->panneaux_necessaires--;
+                $this->panneauxElimines++;
+            }
         }
     }
     public function getId(): ?int
@@ -140,6 +150,18 @@ class Calcul
     public function setUtilisateur(?Utilisateur $utilisateur): static
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getPanneauxElimines(): ?int
+    {
+        return $this->panneauxElimines;
+    }
+
+    public function setPanneauxElimines(?int $panneauxElimines): static
+    {
+        $this->panneauxElimines = $panneauxElimines;
 
         return $this;
     }

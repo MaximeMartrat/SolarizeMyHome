@@ -1,6 +1,17 @@
+html,
 body {
-    background-color: lightgray;
+  font-family: "Poppins", sans-serif;
+  background-color: lightgrey;
 }
 .btn-width {
-    width: 15%;
+  width: 15%;
+}
+.jumbotron-custom {
+  margin-top: 20%;
+  color: white;
+  text-shadow: 0px 2px 2px black;
+}
+.jumbotron-simulation, .title-calcul {
+  color: white;
+  text-shadow: 0px 2px 2px black;
 }

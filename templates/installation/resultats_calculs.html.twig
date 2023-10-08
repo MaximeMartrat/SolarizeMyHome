@@ -1,29 +1,83 @@
-{# templates/installation/resultats_calculs.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Résultats des calculs</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Votre Conso (KWH)</th>
-                <th scope="col">Puissance Recommandée (KWC)</th>
-                <th scope="col">Puissance Recommandée (WC)</th>
-                <th scope="col">Production Estimée(KWH)</th>
-                <th scope="col">Panneaux Nécessaires</th>
-            </tr>
-        </thead>
-        <tbody>
-                <tr>
-                    <td>{{ calcul.getConsoKWH() }}</td>
-                    <td>{{ calcul.getPuissanceKWC()|number_format(2, '.', '') }}</td>
-                    <td>{{ calcul.getPuissanceWC()|number_format(2, '.', '') }}</td>
-                    <td>{{ calcul.getProductionKWH() }}</td>
-                    <td>{{ calcul.getPanneauxNecessaires() }}</td>
-                </tr>
-        </tbody>
-    </table>
+	<div class="container mt-5">
+		<div class="jumbotron">
+			<div class="title-calcul">
+				<h1 class"h3 mb-3 font-weight-normal">ESTIMATION</h1>
+				<hr class="my-4">
+				<p class="lead text-center mt-4">Retrouvez tous les résultats de votre simulation ici et modifiez vos informations en un clic</p>
+			</div>
+			<div class="row">
+				<div class="col-md-4 mb-4">
+					<div class="card border-primary mb-3 text-center h-100">
+						<div class="card-header">Votre Conso (KWH)</div>
+						<div class="card-body">
+							<p class="card-text">{{ calcul.getConsoKWH() }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 mb-4">
+					<div class="card border-primary mb-3 text-center h-100">
+						<div class="card-header">Puissance Recommandée (KWC)</div>
+						<div class="card-body">
+							<p class="card-text">{{ calcul.getPuissanceKWC()|number_format(2, '.', '') }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 mb-4">
+					<div class="card border-primary mb-3 text-center h-100">
+						<div class="card-header">Puissance Recommandée (WC)</div>
+						<div class="card-body">
+							<p class="card-text">{{ calcul.getPuissanceWC()|number_format(2, '.', '') }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card border-primary mb-3 text-center h-100">
+						<div class="card-header">Production Estimée(KWH)</div>
+						<div class="card-body">
+							<p class="card-text">{{ calcul.getProductionKWH() }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card border-primary mb-3 text-center h-100">
+						<div class="card-header">Panneaux Nécessaires</div>
+						<div class="card-body">
+							<p class="card-text">{{ calcul.getPanneauxNecessaires() }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card border-primary mb-3 text-center h-100">
+						<div class="card-header">Panneaux Supplémentaires</div>
+						<div class="card-body">
+							{% if calcul.getPanneauxElimines() is null %}
+								<p class="card-text">0</p>
+							{% else %}
+								<p class="card-text">{{ calcul.getPanneauxElimines() }}</p>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center mt-3">
+				<a class="btn btn-lg btn-primary" href="{{ path('saisie_donnees') }}">
+					retour
+				</a>
+			</div>
+		</div>
+		<hr class="my-4">
+	</div>
+	<style>
+		body {
+			height: 100vh;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-color: white;
+			background-image: url({{ asset('images/panneaux.png') }});
+		}
+	</style>
 {% endblock %}
-

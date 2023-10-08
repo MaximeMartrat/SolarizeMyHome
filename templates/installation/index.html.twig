@@ -1,35 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello InstallationPhotovoltaiqueController!
-{% endblock %}
-
+{% block title %}SIMULATION{% endblock %}
 
 {% block body %}
-	<fieldset>
-		<legend>Saisie de données</legend>
-		{{ form_start(form) }}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-simulation">
+            <form method="post">
+                {{ form_start(form) }}
 
-		<div class="form-group row">
-			{{ form_row(form.Nom) }}
-		</div>
+                <h1 class="h3 mb-3 font-weight-normal">Simulation</h1>
+                <hr class="my-4">
 
-		<div class="form-group row">
-			{{ form_row(form.Prenom) }}
-		</div>
+                <div class="form-group">
+                    {{ form_row(form.Nom, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Nom'
+                        }
+                    }) }}
+                </div>
 
-		<div class="form-group row">
-			{{ form_row(form.longueur_toit) }}
-		</div>
+                <div class="form-group">
+                    {{ form_row(form.Prenom, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Prénom'
+                        }
+                    }) }}
+                </div>
 
-		<div class="form-group row">
-			{{ form_row(form.largeur_toit) }}
-		</div>
+                <div class="form-group">
+                    {{ form_row(form.longueur_toit, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Longueur de toit'
+                        }
+                    }) }}
+                </div>
 
-		<div class="form-group row">
-			{{ form_row(form.facture) }}
-		</div>
+                <div class="form-group">
+                    {{ form_row(form.largeur_toit, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Largeur de toit'
+                        }
+                    }) }}
+                </div>
 
-		<button type="submit" class="btn btn-primary">Soumettre</button>
-		{{ form_end(form) }}
-	</fieldset>
+                <div class="form-group">
+                    {{ form_row(form.facture, {
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Facture'
+                        }
+                    }) }}
+                </div>
+
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                      OK
+                    </button>
+                </div>
+
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+    <style>
+		body {
+			height: 100vh;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-color: white;
+			background-image: url({{ asset('images/panneaux.png') }});
+		}
+		
+	</style>
 {% endblock %}

@@ -4,15 +4,26 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-5">
-		<div class="jumbotron">
-			<h1 class="display-4 row justify-content-center">SOLARIZE MY HOME</h1>
-			<p class="lead text-center mt-4">Notre simulation pour estimer votre parc photovoltaïque selon vos besoins</p>
+	<div class="container mt-5 custom-container">
+		<div class="jumbotron jumbotron-custom">
+			<h1 class="display-4 row justify-content-center">SOLARIZE</h1>
+			<p class="lead text-center mt-4 text-support">Notre simulation pour estimer votre parc photovoltaïque selon vos besoins</p>
 			<hr class="my-4">
-			<p class="text-center">suivez le lien pour calculer votre estimation</p>
-            <div class="row justify-content-center mt-4">
-                <a class="btn btn-primary btn-lg btn-width" href="{{ path('saisie_donnees') }}" role="button">Commencer</a>
-            </div>
+			<p class="text-center text-comment">suivez le lien pour calculer votre estimation</p>
+			<div class="row justify-content-center mt-4">
+				<a class="btn btn-primary btn-lg btn-width" href="{{ path('saisie_donnees') }}" role="button">Commencer</a>
+			</div>
 		</div>
 	</div>
+	<style>
+		body {
+			height: 100vh;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-color: white;
+			background-image: url({{ asset('images/panneaux.png') }});
+		}
+		
+	</style>
 {% endblock %}

@@ -8,6 +8,26 @@
 				<hr class="my-4">
 				<p class="lead text-center mt-4">Retrouvez tous les résultats de votre simulation ici et modifiez vos informations en un clic</p>
 			</div>
+			{% if utilisateur is not null %}
+				<div class="text-center infos-container">
+					<div class="card text-white bg-primary mb-3 infos" style="max-width: 20rem;">
+						<div class="card-header">Vos informations</div>
+						<div class="card-body">
+							<h4 class="card-title">Vos Informations</h4>
+							<p class="card-text">
+								{{ utilisateur.getNom() }}</p>
+							<p class="card-text">
+								{{ utilisateur.getPrenom() }}</p>
+							<p class="card-text">Longueur de votre toit:
+								{{ utilisateur.getLongueurToit() }} m</p>
+							<p class="card-text">Largeur de votre toit:
+								{{ utilisateur.getLargeurToit() }} m</p>
+							<p class="card-text">Facture:
+								{{ utilisateur.getFacture() }} €</p>
+						</div>
+					</div>
+				</div>
+			{% endif %}
 			<div class="row">
 				<div class="col-md-4 mb-4">
 					<div class="card border-primary mb-3 text-center h-100">
@@ -63,7 +83,7 @@
 				</div>
 			</div>
 			<div class="d-flex justify-content-center mt-3">
-				<a class="btn btn-lg btn-primary" href="{{ path('saisie_donnees') }}">
+				<a class="btn btn-lg btn-primary" href="{{ path('remove') }}">
 					retour
 				</a>
 			</div>
@@ -78,6 +98,13 @@
 			background-position: center;
 			background-color: white;
 			background-image: url({{ asset('images/panneaux.png') }});
+		}
+		.infos-container {
+			display: flex;
+			justify-content: center;
+		}
+		.infos{
+			width: 100%;
 		}
 	</style>
 {% endblock %}
